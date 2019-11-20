@@ -1,7 +1,23 @@
-FROM python:3.8.0
+FROM python:3.7.5-slim-buster AS builder
 
 MAINTAINER m.vandenbeek@gmail.com
 
-RUN python -m pip install ruamel.yaml==0.16.5 planemo
+# RUN apk update && apt add linux-headers build-base libxml2-dev libxslt-dev bzip2-dev
+# RUN apk add xz-dev
+RUN apt-get update && apt-get install -y --no-install-recommends wget git build-essential
+RUN pip install virtualenv && \
+    virtualenv /venv
+RUN mkdir /galaxy && wget -q https://codeload.github.com/galaxyproject/galaxy/tar.gz/release_19.09 -O - | tar -C '/galaxy' --strip-components=1 -xvz
+RUN cd /galaxy && GALAXY_VIRTUAL_ENV=/venv DEV_WHEELS=1 sh scripts/common_startup.sh
+RUN cd /root && git clone -b venv --recurse-submodules https://github.com/mvdbeek/planemo && \
+    source /venv/bin/activate && pip install planemo/
+
+FROM python:3.7.5-slim-buster
+# RUN apk update && apk --no-cache add libxml2-utils
+RUN apt-get update && apt-get install git
+COPY --from=builder /venv /venv
+COPY --from=builder /galaxy /galaxy
+
+ENV GALAXY_VIRTUAL_ENV=/venv
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
