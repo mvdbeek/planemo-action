@@ -12,6 +12,7 @@ jobs:
       - name: publish to docker registry
         uses: manusa/actions-publish-docker@master
         with:
-          name: mvdbeek/planemo-action:latest
+          name: mvdbeek/planemo-action
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          tag: '19.09-0'
