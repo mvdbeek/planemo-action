@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends wget git build-
 RUN pip install virtualenv && \
     virtualenv /venv
 RUN mkdir /galaxy && wget -q https://codeload.github.com/galaxyproject/galaxy/tar.gz/release_19.09 -O - | tar -C '/galaxy' --strip-components=1 -xvz
-RUN cd /galaxy && GALAXY_VIRTUAL_ENV=/venv DEV_WHEELS=1 sh scripts/common_startup.sh
+RUN cd /galaxy && GALAXY_VIRTUAL_ENV=/venv DEV_WHEELS=1 GALAXY_SKIP_CLIENT_BUILD=1 sh scripts/common_startup.sh
 RUN cd /root && git clone -b venv --recurse-submodules https://github.com/mvdbeek/planemo && \
     source /venv/bin/activate && pip install planemo/
 
