@@ -1,16 +1,16 @@
 # action.yml
-name: 'Hello World'
+name: 'Planemo'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  planemo-arguments:  # id of input
+    description: 'planemo command line parameters'
     required: true
-    default: 'World'
+    default: 'lint'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  test-result: # id of output
+    description: 'Test results'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - planemo lint
+    - ${{ inputs.planemo-arguments }}
