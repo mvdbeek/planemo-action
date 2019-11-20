@@ -19,12 +19,11 @@ RUN virtualenv $PLANEMO_VENV && \
      git clone --recurse-submodules https://github.com/galaxyproject/planemo && \
     . $PLANEMO_VENV/bin/activate && pip install planemo/
 
-FROM python:3.7.5-slim-buster
+FROM python:3.7.5-slim-stretch
 COPY --from=builder $GALAXY_VENV $GALAXY_VENV
 COPY --from=builder $PLANEMO_ENV $PLANEMO_ENV
 COPY --from=builder $GALAXY_ROOT $GALAXY_ROOT
 
-ENV PATH="$PLANEMO_VENV/bin:$PATH"
 ENV GALAXY_VIRTUAL_ENV=/venv
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

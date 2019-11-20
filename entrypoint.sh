@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-planemo $@
+/planemo_venv/bin/planemo $@
