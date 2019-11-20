@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - run: docker build -t mvdbeek/planemo-action:latest --build-arg galaxy_branch=release_19.09 .
+      # - run: docker build -t mvdbeek/planemo-action:latest --build-arg galaxy_branch=release_19.09 .
       - name: publish to docker registry
         uses: manusa/actions-publish-docker@master
         with:
