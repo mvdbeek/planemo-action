@@ -1,4 +1,4 @@
-FROM python:3.7.5-slim-buster AS builder
+FROM python:3.7.5-slim-stretch AS builder
 
 MAINTAINER m.vandenbeek@gmail.com
 
