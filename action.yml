@@ -11,6 +11,6 @@ outputs:
     description: 'Test results'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://mvdbeek/planemo-actions:19.09-0'
   args:
     - ${{ inputs.planemo-arguments }}
