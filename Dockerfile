@@ -9,7 +9,7 @@ ENV GALAXY_VENV=/venv
 ENV GALAXY_ROOT=/galaxy
 ENV GALAXY_VIRTUAL_ENV=/venv
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl wget git build-essential software-properties-common gnupg2
+RUN apt-get update && apt-get install -y --no-install-recommends curl wget git build-essential software-properties-common apt-transport-https gnupg2
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/debian \
