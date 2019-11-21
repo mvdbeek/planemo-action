@@ -16,7 +16,7 @@ RUN mkdir /galaxy && wget -q https://codeload.github.com/galaxyproject/galaxy/ta
 RUN cd /galaxy && GALAXY_VIRTUAL_ENV=$GALAXY_VENV DEV_WHEELS=1 GALAXY_SKIP_CLIENT_BUILD=1 sh scripts/common_startup.sh
 RUN virtualenv $PLANEMO_VENV && \
      cd /root && \
-     git clone --recurse-submodules https://github.com/galaxyproject/planemo && \
+     git clone -b github_action_work --recurse-submodules https://github.com/mvdbeek/planemo && \
     . $PLANEMO_VENV/bin/activate && pip install planemo/
 
 FROM python:3.7.5-slim-stretch
