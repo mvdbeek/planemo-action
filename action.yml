@@ -12,5 +12,7 @@ outputs:
 runs:
   using: 'docker'
   image: 'docker://mvdbeek/planemo-action:19.09-0'
+  volumes:
+    - /tmp:/tmp
   args:
     - ${{ inputs.planemo-arguments }}
