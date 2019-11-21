@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 mkdir -p /home/runner/work/_temp/
-ln -s /github/home /home/runner/work/_temp/_github_home
+ln /github/home /home/runner/work/_temp/_github_home
 mkdir /home/runner/work/_temp/_github_home/tmp
 export TMPDIR=/home/runner/work/_temp/_github_home/tmp
 
