@@ -30,6 +30,7 @@ COPY --from=builder /usr/bin/docker /usr/bin/docker
 COPY --from=builder $GALAXY_VENV $GALAXY_VENV
 COPY --from=builder $PLANEMO_ENV $PLANEMO_ENV
 COPY --from=builder $GALAXY_ROOT $GALAXY_ROOT
+RUN mkdir /root/.planemo/ && curl -L 'https://github.com/involucro/involucro/releases/download/v1.1.2/involucro' -o '/root/.planemo/involucro' && chmod +x /root/.planemo/involucro
 
 ENV GALAXY_VIRTUAL_ENV=/venv
 COPY entrypoint.sh /entrypoint.sh
